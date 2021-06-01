@@ -2,7 +2,6 @@ var express = require('express');
 var router = express.Router();
 const { asyncHandler, csrfProtection } = require('../utils.js')
 const { check, validationResult } = require("express-validator");
-const bcrypt = require("bcryptjs");
 const { User } = require('../db/models')
 const bcrypt = require('bcryptjs');
 
@@ -23,7 +22,6 @@ const validateEmailAndPassword = [
   check("password")
     .exists({ checkFalsy: true })
     .withMessage("Please provide a password."),
-  handleValidationErrors,
 ];
 
 async function getHash(password, saltRounds) {
@@ -41,7 +39,7 @@ router.get('/', function (req, res, next) {
   res.send('respond with a resource');
 });
 
-router.post('/user/login', csrfProtection, loginValidators,
+router.post('/login', csrfProtection, loginValidators,
   asyncHandler(async (req, res) => {
     const {
       email,
@@ -63,9 +61,6 @@ router.post('/user/login', csrfProtection, loginValidators,
       errors = validatorErrors.array().map((error) => error.msg);
     }
     res.render('user-login', {
-      title: 'Login',
-      email,
-      errors,
       csrfToken: req.csrfToken(),
     });
   }));

@@ -28,7 +28,7 @@ const store = new SequelizeStore({ db: sequelize });
 
 app.use(
   session({
-    store: new (store(session))(),
+    store,
     secret: sessionSecret,
     resave: false,
     saveUninitialized: false,

@@ -18,6 +18,11 @@ module.exports = {
       description: {
         type: Sequelize.TEXT
       },
+      userId: {
+        allowNull: false,
+        type: Sequelize.INTEGER,
+        references: { model: 'Users' }
+      },
       completionStatus: {
         type: Sequelize.NUMERIC(5, 2)
       },
