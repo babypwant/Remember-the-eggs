@@ -7,7 +7,7 @@ module.exports = (sequelize, DataTypes) => {
     hashedPassword: DataTypes.STRING
   }, {});
   User.associate = function (models) {
-    User.hasMany(models.Task, { foreignKey: 'taskId' })
+    User.hasMany(models.List, { foreignKey: 'userId' })
   };
   return User;
 };

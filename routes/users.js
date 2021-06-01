@@ -1,9 +1,14 @@
 var express = require('express');
+const csrf = require('csurf');
+const cookieParser = require('cookie-parser');
 var router = express.Router();
-const { asyncHandler, csrfProtection } = require('../utils.js')
+const { asyncHandler } = require('../utils')
 const { check, validationResult } = require("express-validator");
 const { User } = require('../db/models')
 const bcrypt = require('bcryptjs');
+
+const csrfProtection = csrf({ cookie: true });
+router.use(cookieParser());
 
 const loginValidators = [
   check('emailAddress')
@@ -61,7 +66,7 @@ router.post('/login', csrfProtection, loginValidators,
       errors = validatorErrors.array().map((error) => error.msg);
     }
     res.render('user-login', {
-      csrfToken: req.csrfToken(),
+      csrfToken: req.csrfToken()
     });
   }));
 
