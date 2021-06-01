@@ -1,10 +1,19 @@
 var express = require('express');
 var router = express.Router();
-const { asyncHandler } = require('../utils.js')
-const { check } = require("express-validator");
+const { asyncHandler, csrfProtection } = require('../utils.js')
+const { check, validationResult } = require("express-validator");
 const bcrypt = require("bcryptjs");
 const { User } = require('../db/models')
 const bcrypt = require('bcryptjs');
+
+const loginValidators = [
+  check('emailAddress')
+    .exists({ checkFalsy: true })
+    .withMessage('Please provide a value for Email Address'),
+  check('password')
+    .exists({ checkFalsy: true })
+    .withMessage('Please provide a value for Password'),
+];
 
 const validateEmailAndPassword = [
   check("email")
@@ -24,7 +33,6 @@ async function getHash(password, saltRounds) {
 
 async function isPassword(password, hash) {
   const isPassword = await bcrypt.compare(password, hash);
-  console.log(isPassword);
   return isPassword;
 };
 
@@ -32,6 +40,35 @@ async function isPassword(password, hash) {
 router.get('/', function (req, res, next) {
   res.send('respond with a resource');
 });
+
+router.post('/user/login', csrfProtection, loginValidators,
+  asyncHandler(async (req, res) => {
+    const {
+      email,
+      password,
+    } = req.body;
+    let errors = [];
+    const validatorErrors = validationResult(req);
+    if (validatorErrors.isEmpty()) {
+      const user = await db.User.findOne({ where: { email } });
+      if (user !== null) {
+        const passwordMatch = await bcrypt.compare(password, user.hashedPassword.toString());
+        if (passwordMatch) {
+          loginUser(req, res, user);
+          return res.redirect('/');
+        }
+      }
+      errors.push('Login failed for the provided email address and password');
+    } else {
+      errors = validatorErrors.array().map((error) => error.msg);
+    }
+    res.render('user-login', {
+      title: 'Login',
+      email,
+      errors,
+      csrfToken: req.csrfToken(),
+    });
+  }));
 
 
 module.exports = router;
