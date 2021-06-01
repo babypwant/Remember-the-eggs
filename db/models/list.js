@@ -6,8 +6,8 @@ module.exports = (sequelize, DataTypes) => {
     description: DataTypes.TEXT,
     completionStatus: DataTypes.NUMERIC
   }, {});
-  List.associate = function(models) {
-    // associations can be defined here
+  List.associate = function (models) {
+    List.hasMany(models.Task, { foreignKey: 'listId' })
   };
   return List;
 };
