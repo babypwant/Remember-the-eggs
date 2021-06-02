@@ -44,7 +44,9 @@ router.get('/', function (req, res, next) {
   res.send('respond with a resource');
 });
 
-router.post('/login', csrfProtection, loginValidators,
+
+
+router.post('/', loginValidators,
   asyncHandler(async (req, res) => {
     const {
       email,
@@ -66,7 +68,6 @@ router.post('/login', csrfProtection, loginValidators,
       errors = validatorErrors.array().map((error) => error.msg);
     }
     res.render('user-login', {
-      csrfToken: req.csrfToken()
     });
   }));
 

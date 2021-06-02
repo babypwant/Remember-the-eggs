@@ -9,7 +9,8 @@ const { asyncHandler, csrfProtection } = require('./utils.js')
 const session = require('express-session');
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
 const indexRouter = require('./routes/index');
-const usersRouter = require('./routes/users');
+const loginRouter = require('./routes/login');
+const signupRouter = require('./routes/signup')
 
 const app = express();
 
@@ -17,7 +18,6 @@ const app = express();
 // view engine setup
 app.set('view engine', 'pug');
 
-app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser(sessionSecret));
@@ -45,7 +45,8 @@ app.use(
 store.sync();
 
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
+app.use('/login', loginRouter);
+app.use('/signup', signupRouter)
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
