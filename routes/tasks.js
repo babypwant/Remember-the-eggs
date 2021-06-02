@@ -34,7 +34,7 @@ taskRouter.get("/", asyncHandler(async(req,res)=>{
 //   }))
 
 
-taskRouter.get("/:id(\\d+)", asyncHandler(async (req, res, next) => {
+taskRouter.get("/:id", asyncHandler(async (req, res, next) => {
     const taskId = req.params.id;
     console.log(taskId);
     const task = await Task.findByPk(parseInt(taskId, 10));
@@ -59,7 +59,7 @@ taskRouter.post("/", taskValidators, csrfProtection,asyncHandler(async(req,res)=
   }));
 
 
-taskRouter.put("/:id(\\d+)", taskValidators, asyncHandler(async(req, res)=>{
+taskRouter.put("/:id", taskValidators, asyncHandler(async(req, res)=>{
     const taskId = parseInt(req.params.id,10);
     const task = await Task.findByPk(taskId);
 
@@ -77,7 +77,7 @@ taskRouter.put("/:id(\\d+)", taskValidators, asyncHandler(async(req, res)=>{
     }
 }))
 
-taskRouter.delete('/:id(\\d+)', asyncHandler(async (req, res, next) => {
+taskRouter.delete('/:id', asyncHandler(async (req, res, next) => {
     const taskId = parseInt(req.params.id,10);
     const task = await Task.findByPk(taskId);
 

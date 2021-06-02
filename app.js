@@ -50,7 +50,6 @@ app.use('/', indexRouter);
 app.use('/login', loginRouter);
 app.use('/signup', signupRouter)
 app.use('/tasks', taskRouter)
-app.use('/tasks/new', taskRouter)
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
