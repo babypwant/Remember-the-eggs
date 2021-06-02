@@ -2,8 +2,7 @@ const express = require('express');
 const taskRouter = express.Router();
 const { asyncHandler, csrfProtection } = require('../utils');
 const { Task } = require('../db/models');
-const cookieParser = require('cookie-parser');
-const { check, validationResult } = require('express-validator');
+const { check } = require('express-validator');
 
 
 const taskNotFoundError = (taskId)=>{
@@ -25,7 +24,7 @@ taskRouter.get("/", asyncHandler(async(req,res)=>{
     const tasks = await Task.findAll({
       include: List
     });
-    res.render('tasksTable',{tasks})
+    res.render('tasks-table',{tasks})
   }))
 
 // With csrfProtection
@@ -50,7 +49,7 @@ taskRouter.get("/:id", asyncHandler(async (req, res, next) => {
 }));
 
 ///create task
-taskRouter.post("/", taskValidators, csrfProtection,asyncHandler(async(req,res)=>{
+taskRouter.post("/", taskValidators, csrfProtection, asyncHandler(async(req,res)=>{
     const {  name, due, completionStatus, description } = req.body
     const newTask = await Task.create({
       name,
