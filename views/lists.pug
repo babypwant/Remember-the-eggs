@@ -1,22 +1,11 @@
-<html lang="en">
-  <head>
-    <title>Remmember the Eggs!</title>
-  </head>
-  <body>
-    <div class="remark">
-    <h1>All Lists !</h1>
-    <button type='submit'> Make a new List! </button>
-      <p> Get groceries </p>
-      <p> Car maintenance  </p>
-      <p> Pay Bills </p>
-      <p> Run errands </p>
-      <p> Picnic supplies </p>
-    ul
-    each list in lists
-      div
-        li=list.name
-        li=list.desciption
-    </div>
-  </body>
-</html>
-
+html
+  body
+    form(method='post' action='/lists')
+      label Name
+      input(type='text' name='name' required)
+      label User
+      input(type='number' name='userId' required)
+      label Description
+      textarea(name='description')
+      button(type='submit' class='list-button') Submit
+      a(href='/' class='home-button') Cancel
