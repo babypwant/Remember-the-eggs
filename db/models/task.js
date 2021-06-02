@@ -5,7 +5,6 @@ module.exports = (sequelize, DataTypes) => {
     due: DataTypes.DATE,
     completionStatus: DataTypes.BOOLEAN,
     description: DataTypes.TEXT,
-    userId: DataTypes.INTEGER,
     listId: DataTypes.INTEGER
   }, {});
   Task.associate = function (models) {
