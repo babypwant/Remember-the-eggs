@@ -6,7 +6,6 @@ const { asyncHandler } = require('../utils');
 const { check, validationResult } = require('express-validator');
 const { User } = require('../db/models');
 const bcrypt = require('bcryptjs');
-
 const csrfProtection = csrf({ cookie: true });
 router.use(cookieParser());
 

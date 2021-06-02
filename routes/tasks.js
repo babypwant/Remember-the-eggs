@@ -1,9 +1,11 @@
 const express = require('express');
 const taskRouter = express.Router();
 const { asyncHandler, csrfProtection } = require('../utils');
-const { Task } = require('../db/models');
+const { Task, List } = require('../db/models');
+const cookieParser = require('cookie-parser');
 const { check } = require('express-validator');
 
+taskRouter.use(cookieParser());
 
 const taskNotFoundError = (taskId)=>{
     const error = Error(`Task At ID ${taskId} Not Found`);
