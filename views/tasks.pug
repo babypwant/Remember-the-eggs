@@ -11,4 +11,8 @@ html
         input(type="boolean" name="completionStatus", required)
         label(for="description") Description
         textarea(name="description", cols="30", rows="10")
+        label(for="listId") List
+        select(name="listId" required)
+            each list in lists
+                option(value=list.id)= list.name
         button(type="submit") Create Task

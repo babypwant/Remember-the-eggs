@@ -52,12 +52,13 @@ taskRouter.get("/:id", asyncHandler(async (req, res, next) => {
 
 ///create task
 taskRouter.post("/", taskValidators, csrfProtection, asyncHandler(async(req,res)=>{
-    const {  name, due, completionStatus, description } = req.body
+    const {  name, due, completionStatus, description, listId } = req.body
     const newTask = await Task.create({
       name,
       due,
       completionStatus,
       description,
+      listId
     })
     res.json({newTask}) //res.redirect("/")
   }));
