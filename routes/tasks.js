@@ -5,7 +5,7 @@ const { Task, List } = require('../db/models')
 
 const taskNotFoundError = (taskId)=>{
     const error = Error(`Task At ID ${taskId} Not Found`);
-    error.title = "Tweet Not Found";
+    error.title = "Task Not Found";
     error.status = 404;
     return error
 }
