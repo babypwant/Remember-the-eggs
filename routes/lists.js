@@ -107,8 +107,9 @@ router.put('/:id', listValidators, asyncHandler(async (req, res) => {
     //     throw err;
     // }
     if (list) {
-        await list.update({ description: req.body.description }); 
-        res.json({ list });
+        await list.update({ description: req.body.description });
+        res.json({ list })
+        res.redirect('/');
     } else {
         next(listNotFoundError(req.params.id));
     }
