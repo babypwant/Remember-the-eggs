@@ -1,5 +1,5 @@
 const express = require('express');
-const router = express.Router();
+const taskRouter = express.Router();
 const { asyncHandler, csrfProtection } = require('../utils');
 const { Task } = require('../db/models');
 const cookieParser = require('cookie-parser');
