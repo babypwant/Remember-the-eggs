@@ -3,4 +3,14 @@ html
     title list.name
 
   body
-    form(method=post)
+    form(action=`/lists/edit/${list.id}` method='post')
+    label List Name
+    div(class='list-name')=list.name
+    label Old List Description:
+    div(class='list-description')=list.description
+    label New Description:
+    div(class='list-box')
+      input(type='text' name='description')
+      button(type='submit' class='update-button') Update List
+      a(href=`/lists/${list.id}` class='cancel-button') Cancel
+

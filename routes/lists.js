@@ -87,30 +87,55 @@ router.get("/:id", asyncHandler(async (req, res, next) => {
     if (list) {
         res.render('list-edit', { list });
     } else {
-        const err = Error("List not found");
-        err.errors = [`List with id of ${id} could not be found.`];
-        err.title = "List not found.";
-        err.status = 404;
-        return err;
-        //next(listNotFoundError(req.params.id));
-        // ? create a listNotFoundError validation and pass it into error handler in app.js
+        next(listNotFoundError(req.params.id));
     }
 }));
 
 //PUT:id
 
-router.put('/:id', asyncHandler(async (req, res) => {
+router.put('/:id', listValidators, asyncHandler(async (req, res) => {
     const list = await List.findOne({
         where: {
-            id: req
+            id: req.params.id
         }
     })
-
-
+    // if (req.user.id !== list.userId) {
+    //     const err = new Error("Unauthorized");
+    //     err.status = 401;
+    //     err.message = "You are not authorized to edit this tweet.";
+    //     err.title = "Unauthorized";
+    //     throw err;
+    // }
+    if (list) {
+        await list.update({ description: req.body.description }); 
+        res.json({ list });
+    } else {
+        next(listNotFoundError(req.params.id));
+    }
 }));
 
 
 //DELETE ID
 
+router.delete("/:id", asyncHandler(async (req, res, next) => {
+    const list = await List.findOne({
+        where: {
+            id: req.params.id,
+        },
+    });
+    // if (req.user.id !== tweet.userId) {
+    //     const err = new Error("Unauthorized");
+    //     err.status = 401;
+    //     err.message = "You are not authorized to delete this tweet.";
+    //     err.title = "Unauthorized";
+    //     throw err;
+    // }
+    if (list) {
+        await list.destroy();
+        res.json({ description: `List ${req.params.id} is gone forever, poooof.` });
+    } else {
+        next(listNotFoundError(req.params.id));
+    }
+}));
 
 module.exports = router;
