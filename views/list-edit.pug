@@ -1,0 +1,14 @@
+html
+  body
+    form(action=`/lists/${list.id}` method='post' class='edit-form')
+    label List Name
+    div(class='list-name')=list.name
+    label Old List Description:
+    div(class='list-description')=list.description
+    label New Description:
+    input(type='text' name='description')
+    button(type='submit' class='update-button') Update List
+    a(href=`/` class='cancel-button') Cancel
+    div(class="lists-container")
+    script(type="module" src="./public/javascripts/index.js")
+

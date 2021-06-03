@@ -10,6 +10,7 @@ const session = require('express-session');
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
 const indexRouter = require('./routes/index');
 const loginRouter = require('./routes/login');
+const listsRouter = require('./routes/lists')
 const signupRouter = require('./routes/signup');
 const taskRouter = require('./routes/tasks');
 const {loginUser, logoutUser, requireAuth, restoreUser} = require('./auth')
@@ -44,6 +45,7 @@ store.sync();
 app.use(restoreUser);
 app.use('/', indexRouter);
 app.use('/login', loginRouter);
+app.use('/lists', listsRouter)
 app.use('/signup', signupRouter);
 app.use('/tasks', taskRouter);
 

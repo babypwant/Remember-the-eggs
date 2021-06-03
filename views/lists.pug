@@ -1,0 +1,13 @@
+html
+  body
+    form(method='post' action='/lists' class='create-form')
+      label Name
+      input(type='text' name='name' required)
+      label User
+      select(name='user-select' required)
+        each user in users
+          option(value=user.id)=user.username
+      label Description
+      textarea(name='description')
+      button(type='submit' class='list-button') Submit
+      a(href='/' class='home-button') Cancel
