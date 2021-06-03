@@ -5,6 +5,7 @@ const { User } = require('../db/models');
 const cookieParser = require('cookie-parser');
 const bcrypt = require('bcryptjs');
 const { check, validationResult } = require('express-validator');
+const { loginUser } = require('../auth');
 
 router.use(cookieParser());
 
@@ -77,7 +78,8 @@ router.post(
       const actualHashedPassword = await bcrypt.hash(hashedPassword, 10);
       user.hashedPassword = actualHashedPassword;
       await user.save();
-      res.redirect('/signup');
+      loginUser(req, res, user);
+      res.redirect('/');
     } else {
       const errors = validatorErrors.array().map((error) => error.msg);
       res.render('signup', {
