@@ -1,0 +1,35 @@
+.navbar-wrapper {
+  display: flex;
+  height: 40px;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #333;
+}
+
+.navbar-left,
+.navbar-right {
+  display: inline-block;
+  width: 250px;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.navbar-left {
+  margin-left: 15px;
+}
+
+.navbar-right {
+  margin-right: 15px;
+}
+
+.navbar-btn {
+  color: white;
+  text-decoration: none;
+  display: inline-block;
+  font-weight: 500;
+}
+
+.pipechar {
+  pointer-events: none;
+}

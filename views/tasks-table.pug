@@ -1,0 +1,19 @@
+html
+    head
+    body
+        table
+            thead
+                tr
+                    th List Name
+                    th Task Name
+                    th Due Time
+                    th Completion Status
+                    th Description
+            tbody
+                each task in tasks
+                    tr
+                        td=task.List.name
+                        td=task.name
+                        td=task.due
+                        td=task.completionStatus
+                        td=task.description
