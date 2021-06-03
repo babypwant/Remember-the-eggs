@@ -64,7 +64,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
 });
 
-const form = document.querySelector(".create-form");
+const form = document.querySelector(".edit-form");
 
 form.addEventListener("submit", async (e) => {
     e.preventDefault();
@@ -73,7 +73,7 @@ form.addEventListener("submit", async (e) => {
     const body = { description };
     try {
         const res = await fetch("http://localhost:8080/lists", {
-            method: "POST",
+            method: "PUT",
             body: JSON.stringify(body),
             headers: {
                 "Content-Type": "application/json",

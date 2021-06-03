@@ -85,8 +85,9 @@ router.get("/:id", asyncHandler(async (req, res, next) => {
             id: req.params.id,
         },
     });
+    console.log(list)
     if (list) {
-        res.render('list-edit', { list });
+        res.render('edit', { list });
     } else {
         next(listNotFoundError(req.params.id));
     }
