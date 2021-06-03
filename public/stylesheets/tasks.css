@@ -1,0 +1,26 @@
+* {
+    box-sizing: border-box;
+  }
+
+  .task-form-div {
+    text-align: center;
+    width: 800px;
+  }
+
+  label {
+    width: auto;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  input {
+    width: auto;
+    padding: 5px;
+    margin-left: 100%;
+    margin-right: 100%;
+  }
+
+  form {
+    display: inline-block;
+  }

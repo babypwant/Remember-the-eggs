@@ -3,7 +3,7 @@ const taskRouter = express.Router();
 const { asyncHandler, csrfProtection } = require('../utils');
 const { Task, List } = require('../db/models');
 const cookieParser = require('cookie-parser');
-const { check } = require('express-validator');
+const { check, validationResult } = require('express-validator');
 
 taskRouter.use(cookieParser());
 
@@ -23,10 +23,9 @@ const taskValidators = [
 ];
 
 taskRouter.get("/", asyncHandler(async(req,res)=>{
-    const tasks = await Task.findAll({
-      include: List
-    });
-    res.render('tasks-table',{tasks})
+    const lists = await List.findAll()
+    const tasks = await Task.findAll();
+    res.render('tasks',{tasks, lists})
   }))
 
 // With csrfProtection
@@ -40,7 +39,6 @@ taskRouter.get("/", asyncHandler(async(req,res)=>{
 
 taskRouter.get("/:id", asyncHandler(async (req, res, next) => {
     const taskId = req.params.id;
-    console.log(taskId);
     const task = await Task.findByPk(parseInt(taskId, 10));
 
     if (task) {
@@ -49,6 +47,9 @@ taskRouter.get("/:id", asyncHandler(async (req, res, next) => {
          next(taskNotFoundError(taskId))
     }
 }));
+
+
+
 
 ///create task
 taskRouter.post("/", taskValidators, csrfProtection, asyncHandler(async(req,res)=>{
@@ -60,7 +61,7 @@ taskRouter.post("/", taskValidators, csrfProtection, asyncHandler(async(req,res)
       description,
       listId
     })
-    res.json({newTask}) //res.redirect("/")
+    res.render({newTask}) //res.redirect("/")
   }));
 
 
