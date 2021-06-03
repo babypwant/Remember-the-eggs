@@ -1,14 +1,32 @@
-html
-    head
-    body
-        form(action="/tasks" method="post")
+extends layout
+
+block content
+  validationErrors(errors)
+    if errors
+      div(class='' role='alert')
+        p The following error(s) occurred:
+        ul
+          each error in errors
+            li= error
+  form(action="/tasks" method="post")
         input(type="hidden" name="_csrf" value=csrfToken)
-        label(for="name") Task Name
-        input(type="text" name="name" required)
-        label(for="due") Due Time
-        input(name="date", name="due")
-        label(for="completionStatus") Completion Status
-        input(type="boolean" name="completionStatus", required)
-        label(for="description") Description
-        textarea(name="description", cols="30", rows="10")
-        button(type="submit") Create Task
+        div(class="task-form-div")
+            label(for="name") Task Name
+            input(type="text" name="name" required)
+        div(class="task-form-div")
+            label(for="due") Due Time
+            input(type="date", name="due")
+        div(class="task-form-div")
+            label(for="completionStatus") Completion Status
+            input(type="checkbox" name="completionStatus")
+        div(class="task-form-div")
+            label(for="description") Description
+            textarea(name="description", cols="30", rows="10")
+        div(class="task-form-div")
+            label(for="listId") List
+            select(name="listId" required)
+                each list in lists
+                    option(value=list.id)=list.name
+        div(class="task-button")
+            button(type="submit") Create Task
+        a(href='/' class='home-button')
