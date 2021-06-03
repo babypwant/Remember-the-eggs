@@ -8,10 +8,8 @@ const { loginUser, logoutUser, requireAuth, restoreUser } = require('../auth')
 router.get('/', asyncHandler(async (req, res) => {
   if (!req.session.auth) {
     res.redirect('/login')
-  } else {
-    const { userId } = req.session.auth
   }
-
+  const { userId } = req.session.auth
 
   const user = await User.findByPk(userId)
   const lists = await List.findAll({ where: { userId }, include: { model: Task } })
