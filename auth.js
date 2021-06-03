@@ -20,6 +20,7 @@ const requireAuth = (req, res, next) => {
 const restoreUser = async (req, res, next) => {
 
     if (req.session.auth) {
+        console.log(req.session)
         const { userId } = req.session.auth;
 
         try {
@@ -34,7 +35,8 @@ const restoreUser = async (req, res, next) => {
             res.locals.authenticated = false;
             next(err);
         }
-    } else {
+    }
+    else {
         res.locals.authenticated = false;
         next();
     }

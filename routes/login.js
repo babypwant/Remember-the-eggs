@@ -8,9 +8,10 @@ const { User } = require('../db/models');
 const bcrypt = require('bcryptjs');
 const csrfProtection = csrf({ cookie: true });
 router.use(cookieParser());
+const{loginUser, logoutUser, requireAuth, restoreUser} = require('../auth')
 
 const loginValidators = [
-  check('emailAddress').exists({ checkFalsy: true }).withMessage('Please provide a value for Email Address'),
+  check('email').exists({ checkFalsy: true }).withMessage('Please provide a value for Email Address'),
   check('password').exists({ checkFalsy: true }).withMessage('Please provide a value for Password'),
 ];
 
@@ -30,8 +31,8 @@ async function isPassword(password, hash) {
 }
 
 /* GET users listing. */
-router.get('/', function (req, res, next) {
-  res.send('respond with a resource');
+router.get('/',  function (req, res, next) {
+  res.render('user-login');
 });
 
 router.post(
@@ -42,12 +43,12 @@ router.post(
     let errors = [];
     const validatorErrors = validationResult(req);
     if (validatorErrors.isEmpty()) {
-      const user = await db.User.findOne({ where: { email } });
+      const user = await User.findOne({ where: { email } });
       if (user !== null) {
         const passwordMatch = await bcrypt.compare(password, user.hashedPassword.toString());
         if (passwordMatch) {
           loginUser(req, res, user);
-          return res.redirect('/');
+          return res.redirect('/',);
         }
       }
       errors.push('Login failed for the provided email address and password');
