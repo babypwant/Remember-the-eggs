@@ -3,7 +3,7 @@ const { check, validationResult } = require('express-validator');
 const router = express.Router();
 const { asyncHandler } = require('../utils')
 const db = require("../db/models");
-const { List } = require('../db/models')
+const { List, User } = require('../db/models')
 
 
 //Integrate users so you can assign list to user
@@ -44,7 +44,8 @@ const listValidators = [
 
 //GET
 router.get('/', asyncHandler(async (req, res) => {
-    res.render('lists')
+    const users = await User.findAll();
+    res.render('lists', { users })
 }))
 
 
@@ -99,6 +100,7 @@ router.put('/:id', listValidators, asyncHandler(async (req, res) => {
             id: req.params.id
         }
     })
+    //comment back in, after next merge
     // if (req.user.id !== list.userId) {
     //     const err = new Error("Unauthorized");
     //     err.status = 401;
@@ -109,7 +111,6 @@ router.put('/:id', listValidators, asyncHandler(async (req, res) => {
     if (list) {
         await list.update({ description: req.body.description });
         res.json({ list })
-        res.redirect('/');
     } else {
         next(listNotFoundError(req.params.id));
     }
@@ -124,7 +125,7 @@ router.delete("/:id", asyncHandler(async (req, res, next) => {
             id: req.params.id,
         },
     });
-    // if (req.user.id !== tweet.userId) {
+    // if (req.user.id !== list.userId) {
     //     const err = new Error("Unauthorized");
     //     err.status = 401;
     //     err.message = "You are not authorized to delete this tweet.";
@@ -133,7 +134,7 @@ router.delete("/:id", asyncHandler(async (req, res, next) => {
     // }
     if (list) {
         await list.destroy();
-        res.json({ description: `List ${req.params.id} is gone forever, poooof.` });
+        res.json({ message: `List ${req.params.id} is gone forever, poooof.` });
     } else {
         next(listNotFoundError(req.params.id));
     }
