@@ -8,22 +8,24 @@ block content
         ul
           each error in errors
             li= error
-  form(action="/signup" method="post")
-    input(type="hidden" name="_csrf" value=token)
-    div(class="form-div")
-      label(for="username") Username
-      input(type="text" name='username' required value=user.username)
-    div(class="form-div")
-      label(for="fullName") Full Name
-      input(type="text" name='fullName' required value=user.fullName)
-    div(class="form-div")
-      label(for="email") Email
-      input(type="text" name='email' required value=user.email)
-    div(class="form-div")
-      label(for="hashedPassword") Password
-      input(type="password" name='hashedPassword' required)
-    div(class="form-div")
-      label(for="confirmPassword") Confirm Password
-      input(type="password" name='confirmPassword' required)
-    div(class="btn")
-      button(type="submit") Sign Up
+  form(class="signup-form" action="/signup" method="post" autocomplete="off")
+    div(class="form-wrapper")
+      h2(class="signup-title") Not a current user? Sign-up below!
+      input(type="hidden" name="_csrf" value=token)
+      div(class="form-div")
+        label(class="signup-label" for="username") Username
+        input(class="signup-input" type="text" name='username' required value=user.username)
+      div(class="form-div")
+        label(class="signup-label" for="fullName") Full Name
+        input(class="signup-input" type="text" name='fullName' required value=user.fullName)
+      div(class="form-div")
+        label(class="signup-label" for="email") Email
+        input(class="signup-input" type="text" name='email' required value=user.email)
+      div(class="form-div")
+        label(class="signup-label" for="hashedPassword") Password
+        input(class="signup-input" type="password" name='hashedPassword' required)
+      div(class="form-div")
+        label(class="signup-label" for="confirmPassword") Confirm Password
+        input(class="signup-input" type="password" name='confirmPassword' required)
+      div(class="form-div")
+        button(class="btn" type="submit") Sign Up
