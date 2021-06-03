@@ -1,5 +1,13 @@
-extends layout 
+extends layout
 
 block content
   form(method='post', action='/login')
-    input(type='hidden' name='_csrf' value=csrfToken)
+    input(type="hidden" name="_csrf" value=token)
+    div(class="form-div")
+      label(for="email") eMail
+      input(type="text" name="email")
+    div(class="form-div")
+      label(for="password") Password
+      input(type="text" name="password")
+    div(class="btn")
+      button(type="submit" class="btn ") Log In

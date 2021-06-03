@@ -4,7 +4,7 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const { sequelize } = require('./db/models');
-const { sessionSecret } = require('./config');
+const { sessionSecret, expiresIn } = require('./config');
 const { asyncHandler, csrfProtection } = require('./utils.js');
 const session = require('express-session');
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
@@ -12,6 +12,8 @@ const indexRouter = require('./routes/index');
 const loginRouter = require('./routes/login');
 const signupRouter = require('./routes/signup');
 const taskRouter = require('./routes/tasks');
+const {loginUser, logoutUser, requireAuth, restoreUser} = require('./auth')
+
 
 const app = express();
 
@@ -28,22 +30,18 @@ const store = new SequelizeStore({ db: sequelize });
 
 app.use(
   session({
+    name: "eggs.sid",
     store,
     secret: sessionSecret,
     resave: false,
     saveUninitialized: false,
-    cookie: {
-      httpOnly: true,
-      maxAge: 60000,
-      path: '/',
-      secure: true,
-    },
+    maxAge: expiresIn
   })
 );
 
 // create Session table if it doesn't already exist
 store.sync();
-
+app.use(restoreUser);
 app.use('/', indexRouter);
 app.use('/login', loginRouter);
 app.use('/signup', signupRouter);

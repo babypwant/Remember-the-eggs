@@ -1,0 +1,12 @@
+extends layout
+
+block content
+    div= `Welcome Back ${user.fullName}!`
+
+
+    div(id="board")= "To Do"
+
+        each list in lists
+            div=list.name
+                div= list.description
+                   
