@@ -1,13 +1,15 @@
 extends layout
 
 block content
-  form(method='post', action='/login')
-    input(type="hidden" name="_csrf" value=token)
-    div(class="form-div")
-      label(for="email") eMail
-      input(type="text" name="email")
-    div(class="form-div")
-      label(for="password") Password
-      input(type="text" name="password")
-    div(class="btn")
-      button(type="submit" class="btn ") Log In
+  form(class="login-form" method='post', action='/login')
+    div(class="login-form-wrapper")
+      h2(class="signup-title") Please Login
+      input(type="hidden" name="_csrf" value=token)
+      div(class="form-div")
+        label(for="email" class="signup-label") Email
+        input(type="text" name="email" class="signup-input")
+      div(class="form-div")
+        label(for="password" class="signup-label") Password
+        input(type="password" name="password" class="signup-input")
+      div(class="form-div")
+        button(type="submit" class="btn") Log In
