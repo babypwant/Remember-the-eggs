@@ -1,0 +1,14 @@
+html
+    head
+    body
+        form(action="/tasks" method="post")
+        input(type="hidden" name="_csrf" value=csrfToken)
+        label(for="name") Task Name
+        input(type="text" name="name" required)
+        label(for="due") Due Time
+        input(name="date", name="due")
+        label(for="completionStatus") Completion Status
+        input(type="boolean" name="completionStatus", required)
+        label(for="description") Description
+        textarea(name="description", cols="30", rows="10")
+        button(type="submit") Create Task
