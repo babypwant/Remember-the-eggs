@@ -44,3 +44,7 @@
 .pipechar {
   pointer-events: none;
 }
+
+#welcome-login-msg {
+  color: white;
+}
