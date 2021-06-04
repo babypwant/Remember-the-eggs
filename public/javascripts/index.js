@@ -76,9 +76,9 @@ form.addEventListener("submit", async (e) => {
     const formData = new FormData(form);
     const description = formData.get("description");
     const body = { description };
-
+    console.log(body)
     try {
-        const res = await fetch("http://localhost:8080/lists", {
+        const res = await fetch(`http://localhost:8080/lists`, {
             method: "PUT",
             body: JSON.stringify(body),
             headers: {
