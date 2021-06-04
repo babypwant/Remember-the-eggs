@@ -1,0 +1,24 @@
+extends layout
+append head
+  link(rel="stylesheet" href="/stylesheets/list-edit.css")
+
+  script(src="/javascripts/index.js" type="module" defer)
+block content
+  form(action=`/lists/${list.id}` method='post' class='edit-form')
+    div(class='form-wrapper')
+      h2(class='list-title') List Name
+      div(class='form-div')=list.name
+        label(class='list-label') Old List Description:
+      div(class="form-div")
+        label New Description:
+      div(class='list-description')=list.description
+      div(class="form-div")
+        input(type='text' name='description' class='description-input')
+      div(class="form-div")
+        button(type='submit' class='update-button' id=list.id) Update
+      div(class="form-div")
+        button( class='delete-button' id=list.id) Delete
+      div(class="form-div" class='')
+        a(href=`/` class='cancel-btn') Cancel
+        div(class="lists-container")
+

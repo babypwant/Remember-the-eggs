@@ -32,15 +32,15 @@ const listNotFoundError = (id) => {
     return err;
 };
 
-const listValidators = [
-    check("name")
-        .exists({ checkFalsy: true })
-        .withMessage("List name can't be empty."),
-    handleValidationErrors,
-    check('userId')
-        .exists({ checkFalsy: true })
-        .withMessage("userId can't be empty."),
-];
+// const listValidators = [
+//     check("name")
+//         .exists({ checkFalsy: true })
+//         .withMessage("List name can't be empty."),
+//     handleValidationErrors,
+//     check('userId')
+//         .exists({ checkFalsy: true })
+//         .withMessage("userId can't be empty."),
+// ];
 
 //GET
 router.get('/', asyncHandler(async (req, res) => {
@@ -50,7 +50,7 @@ router.get('/', asyncHandler(async (req, res) => {
 
 
 //POST
-router.post('/', listValidators, asyncHandler(async (req, res) => {
+router.post('/', asyncHandler(async (req, res) => {
     const { name, description, userId } = req.body;
     const list = await db.List.build({
         name: name,
@@ -62,7 +62,7 @@ router.post('/', listValidators, asyncHandler(async (req, res) => {
 
     if (validatorErrors.isEmpty()) {
         await list.save();
-        res.redirect(`/`);
+        res.redirect(`/tasks`);
     } else {
         const errors = validatorErrors.array().map((error) => error.msg);
         res.render('index', {
@@ -85,8 +85,9 @@ router.get("/:id", asyncHandler(async (req, res, next) => {
             id: req.params.id,
         },
     });
+    console.log(list)
     if (list) {
-        res.render('list-edit', { list });
+        res.render('edit', { list });
     } else {
         next(listNotFoundError(req.params.id));
     }
@@ -94,20 +95,20 @@ router.get("/:id", asyncHandler(async (req, res, next) => {
 
 //PUT:id
 
-router.put('/:id', listValidators, asyncHandler(async (req, res) => {
+router.put('/:id', asyncHandler(async (req, res) => {
+    console.log('hello')
     const list = await List.findOne({
         where: {
             id: req.params.id
         }
     })
-    //comment back in, after next merge
-    // if (req.user.id !== list.userId) {
-    //     const err = new Error("Unauthorized");
-    //     err.status = 401;
-    //     err.message = "You are not authorized to edit this tweet.";
-    //     err.title = "Unauthorized";
-    //     throw err;
-    // }
+    if (res.locals.user.id !== list.userId) {
+        const err = new Error("Unauthorized");
+        err.status = 401;
+        err.message = "You are not authorized to edit this tweet.";
+        err.title = "Unauthorized";
+        throw err;
+    }
     if (list) {
         await list.update({ description: req.body.description });
         res.json({ list })
@@ -120,18 +121,19 @@ router.put('/:id', listValidators, asyncHandler(async (req, res) => {
 //DELETE ID
 
 router.delete("/:id", asyncHandler(async (req, res, next) => {
+    console.log('top of route')
     const list = await List.findOne({
         where: {
             id: req.params.id,
         },
     });
-    // if (req.user.id !== list.userId) {
-    //     const err = new Error("Unauthorized");
-    //     err.status = 401;
-    //     err.message = "You are not authorized to delete this tweet.";
-    //     err.title = "Unauthorized";
-    //     throw err;
-    // }
+    if (res.locals.user.id !== list.userId) {
+        const err = new Error("Unauthorized");
+        err.status = 401;
+        err.message = "You are not authorized to delete this tweet.";
+        err.title = "Unauthorized";
+        throw err;
+    }
     if (list) {
         await list.destroy();
        await res.json({ message: `List ${req.params.id} is gone forever, poooof.` });

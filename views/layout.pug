@@ -6,6 +6,7 @@ html
       link(rel='stylesheet', href='./stylesheets/reset.css')
       link(rel='stylesheet', href='./stylesheets/signup.css')
       link(rel='stylesheet', href='./stylesheets/navbar.css')
+      link(rel='stylesheet', href='/stylesheets/login.css')
       <link rel="preconnect" href="https://fonts.gstatic.com">
       <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
       <script src="https://kit.fontawesome.com/29959c360c.js" crossorigin="anonymous"></script>
@@ -18,9 +19,14 @@ html
         a(class="navbar-btn pipechar") |
         a(class="navbar-btn" href="/tasks") Create Task
       div(class="navbar-right")
-        a(class="navbar-btn" href="/signup") Signup
-        a(class="navbar-btn pipechar") |
-        a(class="navbar-btn" href="/login") Login
-        a(class="navbar-btn pipechar") |
-        a(class="navbar-btn" href="/signup") Logout
+        if locals.authenticated
+          p(class="navbar-welcome-msg") Welcome #{locals.user.username}!
+          form(action="/logout" method="post")
+            button(class="navbar-btn" id="logout-btn" type="submit") Logout
+        else
+          a(class="navbar-btn" href="/signup") Signup
+          a(class="navbar-btn pipechar") |
+          a(class="navbar-btn" href="/login") Login
+          //- a(class="navbar-btn pipechar") |
+        //- a(class="navbar-btn" href="/") Logout
     block content
