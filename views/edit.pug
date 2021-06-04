@@ -10,12 +10,14 @@ block content
       div(class='form-div')=list.name
         label(class='list-label') Old List Description:
       div(class="form-div")
-      div(class='list-description')=list.description
         label New Description:
+      div(class='list-description')=list.description
       div(class="form-div")
         input(type='text' name='description' class='description-input')
       div(class="form-div")
-        button(type='submit' class='update-button') Update List
+        button(type='submit' class='update-button' id=list.id) Update
+      div(class="form-div")
+        button(type='submit' class='delete-button' id=list.id) Delete
       div(class="form-div" class='')
         a(href=`/` class='cancel-btn') Cancel
         div(class="lists-container")

@@ -32,15 +32,15 @@ const listNotFoundError = (id) => {
     return err;
 };
 
-const listValidators = [
-    check("name")
-        .exists({ checkFalsy: true })
-        .withMessage("List name can't be empty."),
-    handleValidationErrors,
-    check('userId')
-        .exists({ checkFalsy: true })
-        .withMessage("userId can't be empty."),
-];
+// const listValidators = [
+//     check("name")
+//         .exists({ checkFalsy: true })
+//         .withMessage("List name can't be empty."),
+//     handleValidationErrors,
+//     check('userId')
+//         .exists({ checkFalsy: true })
+//         .withMessage("userId can't be empty."),
+// ];
 
 //GET
 router.get('/', asyncHandler(async (req, res) => {
@@ -50,7 +50,7 @@ router.get('/', asyncHandler(async (req, res) => {
 
 
 //POST
-router.post('/', listValidators, asyncHandler(async (req, res) => {
+router.post('/', asyncHandler(async (req, res) => {
     const { name, description, userId } = req.body;
     const list = await db.List.build({
         name: name,
@@ -95,7 +95,8 @@ router.get("/:id", asyncHandler(async (req, res, next) => {
 
 //PUT:id
 
-router.put('/:id', listValidators, asyncHandler(async (req, res) => {
+router.put('/:id', asyncHandler(async (req, res) => {
+    console.log('hello')
     const list = await List.findOne({
         where: {
             id: req.params.id
