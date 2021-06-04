@@ -8,8 +8,7 @@ block content
         ul
           each error in errors
             li= error
-  form(action="/tasks" method="post")
-        input(type="hidden" name="_csrf" value=csrfToken)
+  form(action="/tasks" method="post" class="create-task-form")
         div(class="task-form-div")
             label(for="name") Task Name
             input(type="text" name="name" required)
