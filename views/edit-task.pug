@@ -1,0 +1,30 @@
+extends layout
+block content
+  <script type="module" src="/javascripts/index.js"></script>
+  form(action=`/tasks/${task.id}` method='post' class='edit-task-form')
+    label Task Name
+    div(class='task-name')=task.name
+    label New Name:
+    input(type='text' name='name' class='new-task-name')
+    Label Current Due Time:
+    div(class='task-due')=task.due
+    label New Due Time:
+    input(type='data' due='due' class='new-task-due')
+    Label Current Completion Status:
+    div(class='task-completion status')=task.completionStatus
+    label New Completion Status:
+    input(type="checkbox" name="completionStatus" class='new-task-completionStatus')
+    label Current Description:
+    div(class='task-description')=task.description
+    label New Description:
+    textarea(name="description", cols="30", rows="10" class='new-task-description')
+    label Current List:
+    div(class='task-list')=list.name
+    label(for="listId") New List:
+    select(name="listId" required class='new-task-listId')
+        each list in lists
+            option(value=list.id)=list.name
+    button(type='submit' class='task-update-button') Update Task
+    button(type='click' class='task-delete-button') Delete Task
+  a(href=`/:id` class='task-cancel-button') Cancel
+  div(class="tasks-container")
