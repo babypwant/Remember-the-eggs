@@ -1,12 +1,24 @@
 extends layout
+append head
+    //- add page specific styles by appending to the head
+    link(rel="stylesheet" href="/stylesheets/home.css")
+    script(src="/javascripts/home.js" type="module" defer)
+
 
 block content
-    div= `Welcome Back ${user.fullName}!`
+
+    div(id="greeting")= `Welcome Back ${user.fullName}!`
+    div(id="reminder")= "To Do:"
 
 
-    div(id="board")= "To Do"
-
-        each list in lists
-            div=list.name
-                div= list.description
-                   
+    div(id="listBoard")
+      each list in lists
+        div(class="listContainer")
+            div(class="listBox" id=list.id)
+                h1(class="listName")= list.name
+                div(class="descriptionBox")
+                    div(class="listDescription").innerHTML= list.description
+                div(class="taskBox")
+                a(href=`/lists/${list.id}` class="editButton button" type="redirect" url)= "Edit"
+                button(class="deleteButton button" type="delete" id=list.id)= "Delete"
+    script(type="module" src="/public/javascripts/home.js")
