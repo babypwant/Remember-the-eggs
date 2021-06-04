@@ -25,7 +25,12 @@
   width: 500px;
   height: 600px;
   border-radius: 15px;
-  background-color: #e5e8e8;
+  background: linear-gradient(135deg, #316181, #98b0c0, #acbfcc);
+  background-size: 600% 100%;
+  animation: gradient 5s linear infinite;
+  animation-direction: alternate;
+  opacity: 0.9;
+  box-shadow: 2px 2px 10px 5px #555;
 }
 
 .task-form-title {
@@ -90,6 +95,7 @@
   border-radius: 8px;
   display: inline-block;
   margin-top: 5px;
+  transition: color 0.3s, background 0.3s, border 0.3s;
 }
 
 .task-form-div {
@@ -117,7 +123,7 @@
 
 .task-input:focus {
   outline: none;
-  border: 1px solid coral;
+  border: 1px solid #0e1d26;
 }
 
 .task-textarea {
@@ -131,16 +137,13 @@
 
 .task-textarea:focus {
   outline: none;
-  border: 1px solid coral;
-}
-
-.checkbox {
-  /*  */
+  border: 1px solid #0e1d26;
 }
 
 .create-task-btn:focus,
 .create-task-btn:hover {
   outline: none;
-  background: coral;
-  border: 1px solid white;
+  color: #0e1d26;
+  background: #eaeff2;
+  border: 1px solid #0e1d26;
 }
