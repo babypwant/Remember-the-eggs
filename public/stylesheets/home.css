@@ -1,0 +1,35 @@
+#listBoard{
+    background-color: burlywood;
+    /* border: 1px solid black; */
+    margin-left: 100px;
+    margin-right: 100px;
+    margin-bottom: 200px;
+    width: 1400px;
+    height: 600px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    overflow-y: scroll;
+}
+.listContainer{
+    background-image:url('./sticky-note-png-5a364d110a3057.9391455115135081130417.jpg');
+    background-repeat: no-repeat;
+    background-size: 30px 600px;
+    display: grid;
+    grid-template-areas:
+    "name name"
+    "description description"
+    "description description"
+    "tasks tasks"
+    "tasks tasks"
+    "tasks tasks"
+    "editButton deleteButton"
+    ;
+    border: 1px solid black;
+    width: 225px;
+    height: 400px;
+    margin: 25px;
+}
+div.listContainer{
+    background-color: transparent;
+}

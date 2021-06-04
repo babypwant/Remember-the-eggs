@@ -7,7 +7,7 @@ const { List, User } = require('../db/models')
 
 
 //Integrate users so you can assign list to user
-//Ommit csrfToken for now but put it in later, having issues implementing it 
+//Ommit csrfToken for now but put it in later, having issues implementing it
 
 const handleValidationErrors = (req, res, next) => {
     const validationErrors = validationResult(req);
@@ -134,7 +134,7 @@ router.delete("/:id", asyncHandler(async (req, res, next) => {
     // }
     if (list) {
         await list.destroy();
-        res.json({ message: `List ${req.params.id} is gone forever, poooof.` });
+       await res.json({ message: `List ${req.params.id} is gone forever, poooof.` });
     } else {
         next(listNotFoundError(req.params.id));
     }
