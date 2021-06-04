@@ -62,7 +62,7 @@ router.post('/', listValidators, asyncHandler(async (req, res) => {
 
     if (validatorErrors.isEmpty()) {
         await list.save();
-        res.redirect(`/`);
+        res.redirect(`/tasks`);
     } else {
         const errors = validatorErrors.array().map((error) => error.msg);
         res.render('index', {

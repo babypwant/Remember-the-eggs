@@ -1,0 +1,32 @@
+.description-input {
+    /* align-items: flex-start; */
+    padding: 5px 5px;
+    width: 250px;
+    border-radius: 8px;
+    border: none;
+    border: 1px solid rgba(0, 0, 0, 0);
+  }
+
+
+  
+  .cancel-btn {
+    border: none;
+    background: transparent;
+    color: #ffffff;
+    font-weight: 100;
+    padding: 12px 20px;
+    text-transform: uppercase;
+    border: px solid rgba(0, 0, 0, 0);
+    border-radius: 8px;
+    display: inline-block;
+    margin-top: 5px;
+  }
+ 
+   
+  .cancel-btn:focus,
+  .cancel-btn:hover {
+    outline: none;
+    background:rgb(204, 96, 23);
+    border: 1px solid rgb(204, 96, 23);
+  }
+  
