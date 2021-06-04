@@ -38,21 +38,24 @@ taskRouter.get("/", asyncHandler(async(req,res)=>{
 
 
 taskRouter.get("/:id", asyncHandler(async (req, res, next) => {
+    const listId = await req.params.id
+    const list = await List.findByPk(parseInt(listId, 10));
     const taskId = req.params.id;
     const task = await Task.findByPk(parseInt(taskId, 10));
+    const lists = await List.findAll()
+
+    console.log(list)
 
     if (task) {
-         res.json({ task });
+        res.render('edit-task',{task, list, lists})
     } else {
          next(taskNotFoundError(taskId))
     }
 }));
 
 
-
-
 ///create task
-taskRouter.post("/", taskValidators, csrfProtection, asyncHandler(async(req,res)=>{
+taskRouter.post("/", taskValidators, asyncHandler(async(req,res)=>{
     const {  name, due, completionStatus, description, listId } = req.body
     const newTask = await Task.create({
       name,
@@ -61,7 +64,7 @@ taskRouter.post("/", taskValidators, csrfProtection, asyncHandler(async(req,res)
       description,
       listId
     })
-    res.render({newTask}) //res.redirect("/")
+    res.redirect("/")
   }));
 
 
@@ -75,7 +78,8 @@ taskRouter.put("/:id", taskValidators, asyncHandler(async(req, res)=>{
             name:req.body.name,
             due:req.body.due,
             completionStatus:req.body.completionStatus,
-            description:req.description
+            description:req.body.description,
+            listId:req.body.listId
         })
         res.json({task})
     }else{
@@ -97,4 +101,3 @@ taskRouter.delete('/:id', asyncHandler(async (req, res, next) => {
 
 
   module.exports = taskRouter;
-

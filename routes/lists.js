@@ -7,7 +7,7 @@ const { List, User } = require('../db/models')
 
 
 //Integrate users so you can assign list to user
-//Ommit csrfToken for now but put it in later, having issues implementing it 
+//Ommit csrfToken for now but put it in later, having issues implementing it
 
 const handleValidationErrors = (req, res, next) => {
     const validationErrors = validationResult(req);
@@ -102,14 +102,13 @@ router.put('/:id', asyncHandler(async (req, res) => {
             id: req.params.id
         }
     })
-    //comment back in, after next merge
-    // if (req.user.id !== list.userId) {
-    //     const err = new Error("Unauthorized");
-    //     err.status = 401;
-    //     err.message = "You are not authorized to edit this tweet.";
-    //     err.title = "Unauthorized";
-    //     throw err;
-    // }
+    if (res.locals.user.id !== list.userId) {
+        const err = new Error("Unauthorized");
+        err.status = 401;
+        err.message = "You are not authorized to edit this tweet.";
+        err.title = "Unauthorized";
+        throw err;
+    }
     if (list) {
         await list.update({ description: req.body.description });
         res.json({ list })
@@ -122,21 +121,22 @@ router.put('/:id', asyncHandler(async (req, res) => {
 //DELETE ID
 
 router.delete("/:id", asyncHandler(async (req, res, next) => {
+    console.log('top of route')
     const list = await List.findOne({
         where: {
             id: req.params.id,
         },
     });
-    // if (req.user.id !== list.userId) {
-    //     const err = new Error("Unauthorized");
-    //     err.status = 401;
-    //     err.message = "You are not authorized to delete this tweet.";
-    //     err.title = "Unauthorized";
-    //     throw err;
-    // }
+    if (res.locals.user.id !== list.userId) {
+        const err = new Error("Unauthorized");
+        err.status = 401;
+        err.message = "You are not authorized to delete this tweet.";
+        err.title = "Unauthorized";
+        throw err;
+    }
     if (list) {
         await list.destroy();
-        res.json({ message: `List ${req.params.id} is gone forever, poooof.` });
+       await res.json({ message: `List ${req.params.id} is gone forever, poooof.` });
     } else {
         next(listNotFoundError(req.params.id));
     }
