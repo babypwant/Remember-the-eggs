@@ -25,6 +25,6 @@ block content
         each list in lists
             option(value=list.id)=list.name
     button(type='submit' class='task-update-button') Update Task
-    button(type='click' class='task-delete-button') Delete Task
+    button(class='task-delete-button' id=task.id) Delete Task
   a(href=`/:id` class='task-cancel-button') Cancel
   div(class="tasks-container")

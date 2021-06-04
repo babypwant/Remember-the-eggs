@@ -85,6 +85,7 @@ taskRouter.put("/:id", taskValidators, asyncHandler(async(req, res)=>{
     }else{
         next(taskNotFoundError(taskId))
     }
+    res.redirect("/")
 }))
 
 taskRouter.delete('/:id', asyncHandler(async (req, res, next) => {
@@ -97,6 +98,7 @@ taskRouter.delete('/:id', asyncHandler(async (req, res, next) => {
     } else {
         next(taskNotFoundError(taskId));
     }
+    res.redirect("/")
 }));
 
 
