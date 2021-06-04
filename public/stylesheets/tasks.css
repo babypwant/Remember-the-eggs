@@ -1,26 +1,146 @@
 * {
-    box-sizing: border-box;
-  }
+  box-sizing: border-box;
+}
 
-  .task-form-div {
-    text-align: center;
-    width: 800px;
-  }
+.task-form {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 100px;
+}
 
-  label {
-    width: auto;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-  }
+.task-form-wrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 2fr 1fr;
+  grid-template-areas:
+    'title title'
+    'taskName dueTime'
+    'completionStatus list'
+    'description description'
+    'submit submit';
+  width: 500px;
+  height: 600px;
+  border-radius: 15px;
+  background-color: #e5e8e8;
+}
 
-  input {
-    width: auto;
-    padding: 5px;
-    margin-left: 100%;
-    margin-right: 100%;
-  }
+.task-form-title {
+  grid-area: title;
+  justify-self: center;
+  align-self: end;
+  font-weight: bold;
+  font-size: 20px;
+  margin-bottom: 40px;
+}
 
-  form {
-    display: inline-block;
-  }
+.task-name {
+  grid-area: taskName;
+}
+
+#due-time {
+  grid-area: dueTime;
+}
+
+#completion-status {
+  grid-area: completionStatus;
+}
+
+#task-list {
+  grid-area: list;
+}
+
+.description {
+  grid-area: description;
+  justify-self: center;
+  align-self: end;
+}
+
+#task-create-btn {
+  grid-area: submit;
+  justify-self: center;
+  align-self: center;
+}
+
+#description-input {
+  resize: none;
+  width: 350px;
+  height: 150px;
+}
+
+#description-label {
+  margin-left: 0px;
+}
+
+.task-name-input {
+  margin-left: 50px;
+}
+
+.create-task-btn {
+  border: none;
+  background: #333;
+  color: #ffffff;
+  font-weight: 100;
+  padding: 12px 20px;
+  text-transform: uppercase;
+  border: 1px solid rgba(0, 0, 0, 0);
+  border-radius: 8px;
+  display: inline-block;
+  margin-top: 5px;
+}
+
+.task-form-div {
+  padding-bottom: 7px;
+  margin-bottom: 8px;
+}
+
+.task-label {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 16px;
+  font-weight: bold;
+  margin-left: 50px;
+}
+
+.task-input {
+  /* align-items: flex-start; */
+  padding: 5px 5px;
+  width: 150px;
+  border-radius: 8px;
+  border: none;
+  border: 1px solid rgba(0, 0, 0, 0);
+  margin-left: 50px;
+}
+
+.task-input:focus {
+  outline: none;
+  border: 1px solid coral;
+}
+
+.task-textarea {
+  /* align-items: flex-start; */
+  padding: 5px 5px;
+  /* width: 200px; */
+  border-radius: 8px;
+  border: none;
+  border: 1px solid rgba(0, 0, 0, 0);
+}
+
+.task-textarea:focus {
+  outline: none;
+  border: 1px solid coral;
+}
+
+.checkbox {
+  /*  */
+}
+
+.create-task-btn:focus,
+.create-task-btn:hover {
+  outline: none;
+  background: coral;
+  border: 1px solid white;
+}
