@@ -1,5 +1,3 @@
-//const { List, User } = require('../db/models')
-
 
 
 // const handleErrors = async (err) => {
@@ -47,8 +45,7 @@ updateButton.addEventListener("click", async (e) => {
                 "Content-Type": "application/json",
             },
         });
-        const data = await res.json()
-        console.log(data)
+        const data = await res.json();
         if (res.status === 401) {
             window.location.href = "/log-in";
             return;
@@ -64,6 +61,22 @@ updateButton.addEventListener("click", async (e) => {
 
 const deleteButton = document.querySelector('.delete-button')
 
-window.addEventListener("load", (event) => {
-    console.log("hello from javascript!")
-})
+// deleteButton.addEventListener('click', async (e) => {
+//     try {
+//         console.log('Hello from the destroy world!');
+//         const res = await fetch(`http://localhost:8080/lists/${e.target.id}`, {
+//             method: 'DELETE',
+//             headers: {
+//                 "Content-Type": "application/json",
+//             }
+//         });
+//         const data = await res.json();
+
+//     } catch (err) {
+//         console.log(err)
+//     }
+// });
+
+// window.addEventListener("load", (event) => {
+//     console.log("hello from javascript!")
+// })

@@ -102,14 +102,13 @@ router.put('/:id', asyncHandler(async (req, res) => {
             id: req.params.id
         }
     })
-    //comment back in, after next merge
-    // if (req.user.id !== list.userId) {
-    //     const err = new Error("Unauthorized");
-    //     err.status = 401;
-    //     err.message = "You are not authorized to edit this tweet.";
-    //     err.title = "Unauthorized";
-    //     throw err;
-    // }
+    if (req.user.id !== list.userId) {
+        const err = new Error("Unauthorized");
+        err.status = 401;
+        err.message = "You are not authorized to edit this tweet.";
+        err.title = "Unauthorized";
+        throw err;
+    }
     if (list) {
         await list.update({ description: req.body.description });
         res.json({ list })
@@ -127,13 +126,13 @@ router.delete("/:id", asyncHandler(async (req, res, next) => {
             id: req.params.id,
         },
     });
-    // if (req.user.id !== list.userId) {
-    //     const err = new Error("Unauthorized");
-    //     err.status = 401;
-    //     err.message = "You are not authorized to delete this tweet.";
-    //     err.title = "Unauthorized";
-    //     throw err;
-    // }
+    if (req.user.id !== list.userId) {
+        const err = new Error("Unauthorized");
+        err.status = 401;
+        err.message = "You are not authorized to delete this tweet.";
+        err.title = "Unauthorized";
+        throw err;
+    }
     if (list) {
         await list.destroy();
         res.json({ message: `List ${req.params.id} is gone forever, poooof.` });
