@@ -15,7 +15,7 @@ router.get('/', asyncHandler(async (req, res) => {
 
     const user = await User.findByPk(userId)
     const lists = await List.findAll({ where: { userId }, include: { model: Task } })
-
+}))
 
 router.post(
   '/logout',
