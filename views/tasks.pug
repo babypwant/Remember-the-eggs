@@ -8,22 +8,22 @@ block content
         ul
           each error in errors
             li= error
-  form(action="/tasks" method="post" class="create-task-form")
-        div(class="task-form-div")
-            label(for="name") Task Name
-            input(type="text" name="name" required)
-        div(class="task-form-div")
-            label(for="due") Due Time
-            input(type="date", name="due")
-        div(class="task-form-div")
-            label(for="completionStatus") Completion Status
-            input(type="checkbox" name="completionStatus")
-        div(class="task-form-div")
-            label(for="description") Description
-            textarea(name="description", cols="30", rows="10")
-        div(class="task-form-div")
-            label(for="listId") List
-            select(name="listId" required)
+  form(class="task-form" action="/tasks" method="post" autocomplete="off")
+    div(class="task-form-wrapper")
+        h2(class="task-form-title") Create New Task
+        input(type="hidden" name="_csrf" value=csrfToken)
+        div(class="task-form-div task-name" id="task-name")
+            label(class="task-label" for="name") Task Name
+            input(class="task-input task-name-input" type="text" name="name" required)
+        div(class="task-form-div"  id="due-time")
+            label(class="task-label" for="due") Due Time
+            input(class="task-input" type="date", name="due" id="due-time-input")
+        div(class="task-form-div"  id="completion-status")
+            label(class="task-label" for="completionStatus") Completion Status
+            input(class="task-input checkbox" type="checkbox" name="completionStatus" id="completion-status-input")
+        div(class="task-form-div" id="task-list")
+            label(class="task-label" for="listId") List
+            select(class="task-input" name="listId" required id="task-list-select")
                 each list in lists
                     option(class="task-input" value=list.id)=list.name
         div(class="task-form-div description")
