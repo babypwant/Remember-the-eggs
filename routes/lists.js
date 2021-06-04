@@ -44,6 +44,9 @@ const listNotFoundError = (id) => {
 
 //GET
 router.get('/', asyncHandler(async (req, res) => {
+    if (!req.session.auth) {
+        res.redirect('/login')
+    }
     const users = await User.findAll();
     res.render('lists', { users })
 }))
@@ -80,12 +83,22 @@ router.post('/', asyncHandler(async (req, res) => {
 //GET:ID
 
 router.get("/:id", asyncHandler(async (req, res, next) => {
+    if (!req.session.auth) {
+        res.redirect('/login')
+    }
     const list = await List.findOne({
         where: {
             id: req.params.id,
         },
     });
-    console.log(list)
+    if (res.locals.user.id !== list.userId) {
+        const err = new Error("Unauthorized");
+        res.redirect('/')
+        err.status = 401;
+        err.message = "You are not authorized to edit this tweet.";
+        err.title = "Unauthorized";
+        throw err;
+    }
     if (list) {
         res.render('edit', { list });
     } else {
@@ -136,7 +149,7 @@ router.delete("/:id", asyncHandler(async (req, res, next) => {
     }
     if (list) {
         await list.destroy();
-       await res.json({ message: `List ${req.params.id} is gone forever, poooof.` });
+        await res.json({ message: `List ${req.params.id} is gone forever, poooof.` });
     } else {
         next(listNotFoundError(req.params.id));
     }

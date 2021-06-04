@@ -13,8 +13,8 @@ block content
 
   div(id="listBoard")
     each list in lists
-      div(class="listContainer")
-        div(class="listBox" id=list.id)
+      div(class="listContainer" id=list.id)
+        div(class="listBox" )
           h1(class="listName")= list.name
           div(class="descriptionBox")
             div(class="listDescription").innerHTML= list.description

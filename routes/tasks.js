@@ -23,6 +23,9 @@ const taskValidators = [
 ];
 
 taskRouter.get("/", asyncHandler(async (req, res) => {
+    if (!req.session.auth) {
+        res.redirect('/login')
+    }
     const lists = await List.findAll()
     const tasks = await Task.findAll();
     res.render('tasks', { tasks, lists })
@@ -38,6 +41,9 @@ taskRouter.get("/", asyncHandler(async (req, res) => {
 
 
 taskRouter.get("/:id", asyncHandler(async (req, res, next) => {
+    if (!req.session.auth) {
+        res.redirect('/login')
+    }
     const listId = await req.params.id
     const list = await List.findByPk(parseInt(listId, 10));
     const taskId = req.params.id;
@@ -69,6 +75,7 @@ taskRouter.post("/", taskValidators, asyncHandler(async (req, res) => {
 
 
 taskRouter.put("/:id", taskValidators, asyncHandler(async (req, res) => {
+
     const taskId = parseInt(req.params.id, 10);
     const task = await Task.findByPk(taskId);
     const listId = await req.params.id
