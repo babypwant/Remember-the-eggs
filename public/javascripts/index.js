@@ -28,8 +28,8 @@ taskForm.addEventListener("submit", async (e) => {
         handleErrors(err);
     }
 });
-const updateButton = document.querySelector(".task-update-button");
-updateButton.addEventListener("click", async (e) => {
+const taskUpdateButton = document.querySelector(".task-update-button");
+taskUpdateButton.addEventListener("click", async (e) => {
     e.preventDefault();
     const name = document.querySelector('.new-task-name').value
     const due = document.querySelector('.new-task-due').value

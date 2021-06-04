@@ -10,11 +10,12 @@ router.get('/', asyncHandler(async (req, res) => {
   if (!req.session.auth) {
     res.redirect('/login')
   }
-    const { userId } = req.session.auth
+  const { userId } = req.session.auth
 
 
-    const user = await User.findByPk(userId)
-    const lists = await List.findAll({ where: { userId }, include: { model: Task } })
+  const user = await User.findByPk(userId)
+  const lists = await List.findAll({ where: { userId }, include: { model: Task } })
+  res.render('home', { user, lists })
 }))
 
 router.post(
