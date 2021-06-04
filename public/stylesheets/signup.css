@@ -17,16 +17,17 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 500px;
+  width: 400px;
   height: 600px;
   border-radius: 15px;
-  background-color: #e5e8e8;
-  /* background: linear-gradient(45deg, #f17c58, #e94584, #24aadb, #27dbb1, #ffdc18, #ff3706);
+  background: linear-gradient(135deg, #316181, #98b0c0, #acbfcc);
   background-size: 600% 100%;
-  animation: gradient 10s linear infinite;
-  animation-direction: alternate; */
+  animation: gradient 5s linear infinite;
+  animation-direction: alternate;
+  opacity: 0.9;
+  box-shadow: 2px 2px 10px 5px #555;
 }
-/*
+
 @keyframes gradient {
   0% {
     background-position: 0%;
@@ -34,7 +35,7 @@
   100% {
     background-position: 100%;
   }
-} */
+}
 
 .form-div {
   padding-bottom: 7px;
@@ -59,7 +60,7 @@
 
 .signup-input:focus {
   outline: none;
-  border: 1px solid coral;
+  border: 1px solid #0e1d26;
 }
 
 .signup-title {
@@ -79,11 +80,13 @@
   border-radius: 8px;
   display: inline-block;
   margin-top: 5px;
+  transition: color 0.3s, background 0.3s, border 0.3s;
 }
 
 .btn:focus,
 .btn:hover {
   outline: none;
-  background: coral;
-  border: 1px solid white;
+  color: #0e1d26;
+  background: #eaeff2;
+  border: 1px solid #0e1d26;
 }

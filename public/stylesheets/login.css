@@ -13,8 +13,35 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 300px;
-  height: 400px;
+  width: 400px;
+  height: 500px;
   border-radius: 15px;
-  background-color: #e5e8e8;
+  background: linear-gradient(135deg, #316181, #98b0c0, #acbfcc);
+  background-size: 600% 100%;
+  animation: gradient 5s linear infinite;
+  animation-direction: alternate;
+  opacity: 0.9;
+  box-shadow: 2px 2px 10px 5px #555;
+}
+
+@keyframes gradient {
+  0% {
+    background-position: 0%;
+  }
+  100% {
+    background-position: 100%;
+  }
+}
+
+.signup-up-here-msg {
+  margin-left: 5px;
+}
+
+.signup-link {
+  margin-left: 14px;
+  transition: color 0.2s;
+}
+
+.signup-link:hover {
+  color: white;
 }

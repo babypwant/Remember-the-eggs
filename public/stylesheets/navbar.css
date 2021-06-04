@@ -3,7 +3,8 @@
   height: 40px;
   justify-content: space-between;
   align-items: center;
-  background-color: #333;
+  background-color: #45708d;
+  opacity: 0.9;
 }
 
 .navbar-left,
@@ -32,6 +33,12 @@
   cursor: pointer;
   outline: inherit;
   font-weight: 500;
+  border-bottom: 1px solid rgba(0, 0, 0, 0);
+}
+
+#logout-btn:hover {
+  color: #eaeff2;
+  border-bottom: 1px solid #eaeff2;
 }
 
 .navbar-btn {
@@ -39,8 +46,26 @@
   text-decoration: none;
   display: inline-block;
   font-weight: 500;
+  border-bottom: 1px solid rgba(0, 0, 0, 0);
+  transition: color 0.5s, border-bottom 0.5s;
+}
+
+.navbar-btn:hover {
+  color: #eaeff2;
+  border-bottom: 1px solid #eaeff2;
 }
 
 .pipechar {
   pointer-events: none;
+}
+
+.navbar-welcome-msg {
+  color: #04090c;
+  border-bottom: 1px solid rgba(0, 0, 0, 0);
+  /* margin-right: 20px; */
+}
+
+.navbar-welcome-msg-welcome {
+  border-bottom: 1px solid rgba(0, 0, 0, 0);
+  color: white;
 }
