@@ -4,7 +4,7 @@ block content
     label Name
     input(type='text' name='name' required)
     label User
-    select(name='user-select' required)
+    select(name='userId' required)
       each user in users
         option(value=user.id)=user.username
     label Description

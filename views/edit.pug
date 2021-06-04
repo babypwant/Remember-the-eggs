@@ -2,7 +2,7 @@ extends layout
 append head
   link(rel="stylesheet" href="/stylesheets/list-edit.css")
 
-  script(src="/javascripts/index.js" type="module" defer)
+  script(src="/javascripts/lists.js" type="module" defer)
 block content
   form(action=`/lists/${list.id}` method='post' class='edit-form')
     div(class='form-wrapper')

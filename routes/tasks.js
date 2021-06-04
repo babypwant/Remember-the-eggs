@@ -7,7 +7,7 @@ const { check, validationResult } = require('express-validator');
 
 taskRouter.use(cookieParser());
 
-const taskNotFoundError = (taskId)=>{
+const taskNotFoundError = (taskId) => {
     const error = Error(`Task At ID ${taskId} Not Found`);
     error.title = "Task Not Found";
     error.status = 404;
@@ -16,17 +16,17 @@ const taskNotFoundError = (taskId)=>{
 
 const taskValidators = [
     check("name")
-        .exists({checkFalsy:true})
+        .exists({ checkFalsy: true })
         .withMessage("PLEASE PROVIDE A NAME")
-        .isLength({ max:50 })
+        .isLength({ max: 50 })
         .withMessage("NAME CANNOT EXCEED 50 CHARACTERS")
 ];
 
-taskRouter.get("/", asyncHandler(async(req,res)=>{
+taskRouter.get("/", asyncHandler(async (req, res) => {
     const lists = await List.findAll()
     const tasks = await Task.findAll();
-    res.render('tasks',{tasks, lists})
-  }))
+    res.render('tasks', { tasks, lists })
+}))
 
 // With csrfProtection
 // taskRouter.get("/", csrfProtection,asyncHandler(async(req,res)=>{
@@ -47,48 +47,50 @@ taskRouter.get("/:id", asyncHandler(async (req, res, next) => {
     console.log(list)
 
     if (task) {
-        res.render('edit-task',{task, list, lists})
+        res.render('edit-task', { task, list, lists })
     } else {
-         next(taskNotFoundError(taskId))
+        next(taskNotFoundError(taskId))
     }
 }));
 
 
 ///create task
-taskRouter.post("/", taskValidators, asyncHandler(async(req,res)=>{
-    const {  name, due, completionStatus, description, listId } = req.body
+taskRouter.post("/", taskValidators, asyncHandler(async (req, res) => {
+    const { name, due, completionStatus, description, listId } = req.body
     const newTask = await Task.create({
-      name,
-      due,
-      completionStatus,
-      description,
-      listId
+        name,
+        due,
+        completionStatus,
+        description,
+        listId
     })
     res.redirect("/")
-  }));
+}));
 
 
-taskRouter.put("/:id", taskValidators, asyncHandler(async(req, res)=>{
-    const taskId = parseInt(req.params.id,10);
+taskRouter.put("/:id", taskValidators, asyncHandler(async (req, res) => {
+    const taskId = parseInt(req.params.id, 10);
     const task = await Task.findByPk(taskId);
+    const listId = await req.params.id
+    const list = await List.findByPk(parseInt(listId, 10));
 
-    if(task){
+    if (task) {
         console.log(task)
         await task.update({
-            name:req.body.name,
-            due:req.body.due,
-            completionStatus:req.body.completionStatus,
-            description:req.body.description,
-            listId:req.body.listId
+            name: req.body.name,
+            due: req.body.due,
+            completionStatus: req.body.completionStatus,
+            description: req.body.description,
+            listId: req.body.listId
         })
-        res.json({task})
-    }else{
+        res.json({ task, list, lists })
+    } else {
         next(taskNotFoundError(taskId))
     }
 }))
 
 taskRouter.delete('/:id', asyncHandler(async (req, res, next) => {
-    const taskId = parseInt(req.params.id,10);
+    const taskId = parseInt(req.params.id, 10);
     const task = await Task.findByPk(taskId);
 
     if (task) {
@@ -100,4 +102,4 @@ taskRouter.delete('/:id', asyncHandler(async (req, res, next) => {
 }));
 
 
-  module.exports = taskRouter;
+module.exports = taskRouter;

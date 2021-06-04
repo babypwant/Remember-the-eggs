@@ -15,7 +15,8 @@ router.get('/', asyncHandler(async (req, res) => {
 
   const user = await User.findByPk(userId)
   const lists = await List.findAll({ where: { userId }, include: { model: Task } })
-  res.render('home', { user, lists })
+  const tasks = await Task.findAll()
+  res.render('home', { user, lists, tasks })
 }))
 
 router.post(
