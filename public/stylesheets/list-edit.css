@@ -1,3 +1,34 @@
+@keyframes gradient {
+  0% {
+    background-position: 0%;
+  }
+  100% {
+    background-position: 100%;
+  }
+}
+
+.form__button--secondary {
+
+  border: none;
+  background: #333;
+  color: #ffffff;
+  font-weight: 100;
+  padding: 12px 20px;
+  text-transform: uppercase;
+  border: 1px solid rgba(0, 0, 0, 0);
+  border-radius: 8px;
+  display: inline-block;
+  margin-top: 5px;
+  transition: color 0.3s, background 0.3s, border 0.3s;
+}
+
+.form__button--secondary:focus,
+.form__button--secondary:hover {
+  outline: none;
+  color: #0e1d26;
+  background: #eaeff2;
+  border: 1px solid #0e1d26;
+}
 .description-input {
     /* align-items: flex-start; */
     padding: 5px 5px;
@@ -7,8 +38,36 @@
     border: 1px solid rgba(0, 0, 0, 0);
   }
 
+  @keyframes gradient {
+    0% {
+      background-position: 0%;
+    }
+    100% {
+      background-position: 100%;
+    }
+  }
 
-  
+.list-name-header{
+  font-weight: bold;
+  font-size: 20px;
+  margin-bottom: 40px;
+}
+.username-header{
+  font-weight: bold;
+  font-size: 20px;
+  margin-bottom: 40px;
+  margin-top: 20px;
+}
+.description-header{
+  font-weight: bold;
+  font-size: 20px;
+  margin-top: 20px;
+  margin-bottom: 60px;
+}
+
+.user-select-box{
+
+}
   .cancel-btn {
     border: none;
     background: transparent;
@@ -29,4 +88,6 @@
     background:rgb(204, 96, 23);
     border: 1px solid rgb(204, 96, 23);
   }
+  
+
   
