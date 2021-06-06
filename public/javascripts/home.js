@@ -30,3 +30,8 @@ window.addEventListener("DOMContentLoaded", () => {
         })
     }
 });
+
+document.querySelector('#demo').addEventListener('click', async(e)=>{
+        const emailValue = document.querySelector("#email").value= "demo@google.com";
+        const passwordValue = document.querySelector("#password").value="password"
+})
