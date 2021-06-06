@@ -5,16 +5,17 @@ append head
 block content
   form(method='post' action='/lists' class='login-form')
     div(class="login-form-wrapper")
-      label.list-name-header List Name:
+      label(class="signup-label").list-name-header List Name:
       div(class="form-div")
         input(type='text' name='name' required)
-      label.username-header Select User
+      label(class="signup-label").username-header Select User
+        input(type="hidden" name="_csrf" value=token)
       div(class="form-div")
         select(name='userId' class=user-select-box required)
           each user in users
             option(value=user.id)=user.username
-      label.description-header List Description
+      label(class="signup-label").description-header List Description
       div(class="form-div")
-        textarea(name='description')
+        textarea(name='description' class='description-box')
       button(type='submit' class='list-button') Submit
       a(href='/' class='form__button--secondary' ) Cancel

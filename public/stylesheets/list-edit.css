@@ -6,20 +6,22 @@
     background-position: 100%;
   }
 }
-
+.description-box{
+  
+}
 .form__button--secondary {
 
-  border: none;
-  background: #333;
-  color: #ffffff;
-  font-weight: 100;
-  padding: 12px 20px;
-  text-transform: uppercase;
-  border: 1px solid rgba(0, 0, 0, 0);
-  border-radius: 8px;
-  display: inline-block;
-  margin-top: 5px;
-  transition: color 0.3s, background 0.3s, border 0.3s;
+  position: relative;
+
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 .form__button--secondary:focus,

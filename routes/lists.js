@@ -4,7 +4,11 @@ const router = express.Router();
 const { asyncHandler } = require('../utils')
 const db = require("../db/models");
 const { List, User } = require('../db/models')
+const csrf = require('csurf');
+const cookieParser = require('cookie-parser');
 
+const csrfProtection = csrf({ cookie: true });
+router.use(cookieParser());
 
 //Integrate users so you can assign list to user
 //Ommit csrfToken for now but put it in later, having issues implementing it
@@ -43,17 +47,17 @@ const listNotFoundError = (id) => {
 // ];
 
 //GET
-router.get('/', asyncHandler(async (req, res) => {
+router.get('/', csrfProtection, asyncHandler(async (req, res) => {
     if (!req.session.auth) {
         res.redirect('/login')
     }
     const users = await User.findAll();
-    res.render('lists', { users })
+    res.render('lists', { users, token: req.csrfToken() })
 }))
 
 
 //POST
-router.post('/', asyncHandler(async (req, res) => {
+router.post('/', csrfProtection, asyncHandler(async (req, res) => {
     const { name, description, userId } = req.body;
     const list = await db.List.build({
         name: name,
