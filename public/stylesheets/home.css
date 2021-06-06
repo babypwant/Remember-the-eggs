@@ -1,8 +1,6 @@
 #listBoard{
-    background-color: burlywood;
-    /* border: 1px solid black; */
-    margin-left: 100px;
-    margin-right: 100px;
+    margin-left: 200px;
+    margin-right: 50px;
     margin-bottom: 200px;
     width: 1400px;
     height: 600px;
@@ -11,25 +9,122 @@
     flex-wrap: wrap;
     overflow-y: scroll;
 }
+#reminder{
+    font-size: 50px;
+    text-align: center;
+}
 .listContainer{
-    background-image:url('./sticky-note-png-5a364d110a3057.9391455115135081130417.jpg');
-    background-repeat: no-repeat;
-    background-size: 30px 600px;
+    background-size: 350px 600px;
+    background-position: center;
     display: grid;
     grid-template-areas:
     "name name"
-    "description description"
-    "description description"
-    "tasks tasks"
-    "tasks tasks"
-    "tasks tasks"
-    "editButton deleteButton"
+    "descName"
+    "description"
+    "description"
+    "taskName"
+    "tasks"
+    "tasks"
+    "tasks"
+    "buttonBox"
     ;
-    border: 1px solid black;
-    width: 225px;
-    height: 400px;
+    width: 275px;
+    height: 450px;
     margin: 25px;
 }
-div.listContainer{
-    background-color: transparent;
+.listName{
+    color:black;
+    font-size: 35px;
+    text-align: center;
+    grid-area: name;
+    height:64px;
+    width: 275px;
+    border-bottom: 1px solid black;
+}
+h2{
+    font-size: 20px;
+}
+.descriptionBox{
+    grid-area: description;
+    height:120px;
+    border-bottom: 1px solid black;
+    grid-template-areas:
+    "descName"
+    "descBox"
+    ;
+}
+.descriptionName{
+    text-align: center;
+    height: 30 ;
+    grid-area: descName;
+}
+.listDescription{
+    padding: 0px;
+    text-align: left;
+    overflow-y: scroll;
+    grid-area: descBox;
+    height: 80px;
+}
+.taskBox{
+    overflow: hidden;
+    grid-area: tasks;
+    height: 180px;
+    grid-template-areas:
+    "taskname"
+    "task"
+    "task"
+    "task";
+}
+.taskName{
+    text-align: center;
+    height: 30 ;
+    grid-area: taskName;
+}
+a.task{
+    margin:0px;
+    padding-left: 3px;
+    text-align: left;
+    text-decoration: none;
+    height:30px;
+    grid-area: task;
+}
+.taskDescription{
+    margin: 0px;
+    padding-top: 5px;
+    padding-left: 20px;
+    overflow: hidden;
+}
+#buttonBox{
+    display: grid;
+    grid-area: buttonBox;
+    grid-template-areas:
+    "editButton deleteButton";
+}
+.editButton{
+    box-shadow: -10px 10px 1px 3px rgba(0, 0, 255, .18);
+    margin: auto;
+    grid-area: editButton;
+    height: 64px;
+    text-align: center;
+}
+.edit{
+    line-height: 30px;
+    justify-self: center;
+}
+.deleteButton{
+    border: none;
+    box-shadow: -10px 10px 1px 2px rgba(0, 0, 255, 0.18);
+    margin: auto;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    grid-area: deleteButton;
+    height: 64px;
+}
+.button{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 15px;
+    text-decoration: none;
+    border-radius:25px ;
+    background-color:transparent;;
+    height: 64px;
+    width: 120px;
 }
