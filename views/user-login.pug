@@ -1,5 +1,6 @@
 extends layout
-
+append head
+  script(src="/javascripts/home.js" type="module" defer)
 block content
   form(class="login-form" method='post', action='/login')
     div(class="login-form-wrapper")
@@ -7,12 +8,13 @@ block content
       input(type="hidden" name="_csrf" value=token)
       div(class="form-div")
         label(for="email" class="signup-label") Email
-        input(type="text" name="email" class="signup-input" required)
+        input(type="text" name="email" class="signup-input" id="email" required)
       div(class="form-div")
         label(for="password" class="signup-label") Password
-        input(type="password" name="password" class="signup-input" required)
+        input(type="password" name="password" class="signup-input" id="password" required)
       div(class="form-div")
         button(type="submit" class="btn") Log In
+        button(type="submit" class="btn" id="demo") Demo User
       div
         p(class="signup-up-here-msg") Not a user?
         a(class="signup-link" href="/signup") Register
