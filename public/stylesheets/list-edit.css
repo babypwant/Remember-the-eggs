@@ -169,8 +169,13 @@ a:link{
 .description-header{
   font-weight: bold;
   font-size: 20px;
-
+  text-align: center;
 }
 
+.old-description{
+  font-weight: 80px;
+  font-size: 20px;
+  text-align: center;
+}
 
   
