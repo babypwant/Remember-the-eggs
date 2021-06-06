@@ -6,15 +6,66 @@
     background-position: 100%;
   }
 }
+
+.option-bar{
+  border: 1px solid #ccc;
+  width: 200px;
+  border-radius: 3px;
+  overflow: hidden;
+  background: #fafafa url("img/icon-select.png") no-repeat 90% 50%;
+}
+.option-bar select {
+  padding: 5px 8px;
+  width: 130%;
+  border: none;
+  box-shadow: none;
+  background: transparent;
+  background-image: none;
+  -webkit-appearance: none;
+}
+
+.option-bar select:focus {
+  outline: none;
+}
+
 .description-box{
-  
+  width: normal;
+  height: normal;
+  border-radius: 4px;
 }
 
 a:link{
   text-decoration: none;
-  
 }
-
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+.form__button--primary{
+  border: none;
+  background: #333;
+  color: #ffffff;
+  font-size: 15px;
+  font-weight: normal;
+  padding: 9px 18px;
+  text-transform: uppercase;
+  border: 1px solid rgba(0, 0, 0, 0);
+  border-radius: 8px;
+  display: inline-block;
+  margin-top: 5px;
+  transition: color 0.3s, background 0.3s, border 0.3s;
+}
+.form__button--primary:focus,
+.form__button--primary:hover {
+  outline: none;
+  color: #ffffff;
+  background: #d84930;
+  border: 1px solid #0e1d26;
+}
 .form__button--secondary {
   border: none;
   background: #333;
@@ -29,29 +80,23 @@ a:link{
   transition: color 0.3s, background 0.3s, border 0.3s;
 }
 
-@keyframes rotate {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
-}
 
 .form__button--secondary:focus,
 .form__button--secondary:hover {
   outline: none;
-  color: #0e1d26;
-  background: #eaeff2;
+  color: #ffffff;
+  background: #40e66a;
   border: 1px solid #0e1d26;
 }
-.description-input {
+.custom-select sources {
     /* align-items: flex-start; */
     padding: 5px 5px;
     width: 250px;
+    height: 100px;
     border-radius: 8px;
     border: none;
     border: 1px solid rgba(0, 0, 0, 0);
+    margin-bottom: 10px;
   }
 
   @keyframes gradient {
@@ -66,24 +111,18 @@ a:link{
 .list-name-header{
   font-weight: bold;
   font-size: 20px;
-  margin-bottom: 40px;
 }
 .username-header{
   font-weight: bold;
   font-size: 20px;
-  margin-bottom: 40px;
-  margin-top: 20px;
+
 }
 .description-header{
   font-weight: bold;
   font-size: 20px;
-  margin-top: 20px;
-  margin-bottom: 60px;
-}
-
-.user-select-box{
 
 }
+
   .cancel-btn {
     border: none;
     background: transparent;
