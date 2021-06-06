@@ -7,7 +7,7 @@ updateButton.addEventListener("click", async (e) => {
 
     const description = document.querySelector('.description-input').value
     try {
-        const res = await fetch(`https://remember-the-eggs-aa.herokuapp.com/${e.target.id}`, {
+        const res = await fetch(`https://remember-the-eggs-aa.herokuapp.com/lists/${e.target.id}`, {
             method: "PUT",
             body: JSON.stringify({ description }),
             headers: {
@@ -34,7 +34,7 @@ deleteButton.addEventListener('click', async (e) => {
     e.preventDefault();
     console.log('Hello everyone')
     try {
-        const res = await fetch(`https://remember-the-eggs-aa.herokuapp.com/${e.target.id}`, {
+        const res = await fetch(`https://remember-the-eggs-aa.herokuapp.com/lists/${e.target.id}`, {
             method: 'DELETE',
             headers: {
                 "Content-Type": "application/json",
