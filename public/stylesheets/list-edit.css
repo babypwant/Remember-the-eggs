@@ -9,10 +9,24 @@
 .description-box{
   
 }
+
+a:link{
+  text-decoration: none;
+  
+}
+
 .form__button--secondary {
-
-  position: relative;
-
+  border: none;
+  background: #333;
+  color: #ffffff;
+  font-weight: 100;
+  padding: 12px 20px;
+  text-transform: uppercase;
+  border: 1px solid rgba(0, 0, 0, 0);
+  border-radius: 8px;
+  display: inline-block;
+  margin-top: 5px;
+  transition: color 0.3s, background 0.3s, border 0.3s;
 }
 
 @keyframes rotate {

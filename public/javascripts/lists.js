@@ -1,6 +1,7 @@
 
 const updateButton = document.querySelector(".update-button");
 
+
 updateButton.addEventListener("click", async (e) => {
     e.preventDefault();
 
