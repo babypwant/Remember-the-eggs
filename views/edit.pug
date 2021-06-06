@@ -2,27 +2,28 @@ extends layout
 append head
   //- add page specific styles by appending to the head
   link(rel="stylesheet" href="/stylesheets/index.css")
-  
+
 append head
   link(rel="stylesheet" href="/stylesheets/list-edit.css")
 
   script(src="/javascripts/lists.js" type="module" defer)
 block content
-  form(action=`/lists/${list.id}` method='post' class='edit-form')
+  form(action=`/lists/${list.id}` method='post' class='signup-form')
     div(class='form-wrapper')
-      h2(class='list-title') List Name
-      div(class='form-div')=list.name
-        label(class='list-label') Old List Description:
+      h2(class='list-title').list-name-header List Name
+      h2()=list.name
       div(class="form-div")
-        label New Description:
+      label(class='list-label').list-name-header Old List Description:
       div(class='list-description')=list.description
       div(class="form-div")
-        input(type='text' name='description' class='description-input')
+      label().list-name-header New Description:
       div(class="form-div")
-        button(type='submit' class='update-button' id=list.id) Update
+        textarea( name='description' class='description-input' class='new-description-box' cols="30" rows="10")
+      div(class="form-div")
+        button(type='submit' class='accept-btn' id=list.id) Update
       div(class="form-div")
         button( class='delete-button' id=list.id) Delete
       div(class="form-div" class='')
-        a(href=`/` class='cancel-btn') Cancel
+        a(href=`/` class='home-btn') Home
         div(class="lists-container")
 

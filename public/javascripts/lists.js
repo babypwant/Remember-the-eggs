@@ -1,5 +1,5 @@
 
-const updateButton = document.querySelector(".update-button");
+const updateButton = document.querySelector(".accept-btn");
 
 
 updateButton.addEventListener("click", async (e) => {

@@ -10,18 +10,16 @@
 .option-bar{
   border: 1px solid #ccc;
   width: 200px;
-  border-radius: 3px;
-  overflow: hidden;
-  background: #fafafa url("img/icon-select.png") no-repeat 90% 50%;
+  border-radius: 4px;
+  background: #fafafa;
+  font-family: Arial, Helvetica, sans-serif;
 }
 .option-bar select {
   padding: 5px 8px;
-  width: 130%;
+  width: 100%;
   border: none;
   box-shadow: none;
   background: transparent;
-  background-image: none;
-  -webkit-appearance: none;
 }
 
 .option-bar select:focus {
@@ -32,6 +30,11 @@
   width: normal;
   height: normal;
   border-radius: 4px;
+}
+.new-description-box{
+  width: 300px ;
+  height: 150px;
+  border-radius: 8px;
 }
 
 a:link{
@@ -45,7 +48,7 @@ a:link{
     transform: rotate(360deg);
   }
 }
-.form__button--primary{
+.cancel-btn{
   border: none;
   background: #333;
   color: #ffffff;
@@ -59,18 +62,41 @@ a:link{
   margin-top: 5px;
   transition: color 0.3s, background 0.3s, border 0.3s;
 }
-.form__button--primary:focus,
-.form__button--primary:hover {
+.cancel-btn:focus,
+.cancel-btn:hover {
   outline: none;
   color: #ffffff;
   background: #d84930;
   border: 1px solid #0e1d26;
 }
-.form__button--secondary {
+
+.delete-button{
   border: none;
   background: #333;
   color: #ffffff;
-  font-weight: 100;
+  font-size: 15px;
+  font-weight: normal;
+  padding: 9px 18px;
+  text-transform: uppercase;
+  border: 1px solid rgba(0, 0, 0, 0);
+  border-radius: 8px;
+  display: inline-block;
+  margin-top: 5px;
+  transition: color 0.3s, background 0.3s, border 0.3s;
+}
+.delete-button:focus,
+.delete-button:hover{
+  outline: none;
+  color: #ffffff;
+  background: #d84930;
+  border: 1px solid #0e1d26;
+}
+
+.accept-btn {
+  border: none;
+  background: #333;
+  color: #ffffff;
+  font-weight: normal;
   padding: 12px 20px;
   text-transform: uppercase;
   border: 1px solid rgba(0, 0, 0, 0);
@@ -81,11 +107,34 @@ a:link{
 }
 
 
-.form__button--secondary:focus,
-.form__button--secondary:hover {
+.accept-btn:focus,
+.accept-btn:hover {
   outline: none;
   color: #ffffff;
   background: #40e66a;
+  border: 1px solid #0e1d26;
+}
+
+.home-btn {
+  border: none;
+  background: #333;
+  color: #ffffff;
+  font-weight: normal;
+  padding: 10px 20px;
+  text-transform: uppercase;
+  border: 1px solid rgba(0, 0, 0, 0);
+  border-radius: 8px;
+  display: inline-block;
+  margin-top: 5px;
+  transition: color 0.3s, background 0.3s, border 0.3s;
+}
+
+
+.home-btn:focus,
+.home-btn:hover {
+  outline: none;
+  color: #2686d4;
+  background: #e0e6e1;
   border: 1px solid #0e1d26;
 }
 .custom-select sources {
@@ -123,26 +172,5 @@ a:link{
 
 }
 
-  .cancel-btn {
-    border: none;
-    background: transparent;
-    color: #ffffff;
-    font-weight: 100;
-    padding: 12px 20px;
-    text-transform: uppercase;
-    border: px solid rgba(0, 0, 0, 0);
-    border-radius: 8px;
-    display: inline-block;
-    margin-top: 5px;
-  }
- 
-   
-  .cancel-btn:focus,
-  .cancel-btn:hover {
-    outline: none;
-    background:rgb(204, 96, 23);
-    border: 1px solid rgb(204, 96, 23);
-  }
-  
 
   

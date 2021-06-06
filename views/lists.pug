@@ -1,6 +1,7 @@
 extends layout
 append head
   link(rel="stylesheet" href="/stylesheets/list-edit.css")
+  <link href="https://emoji-css.afeld.me/emoji.css" rel="stylesheet">
   script(src="/javascripts/index.js" type="module" defer)
 block content
   form(method='post' action='/lists' class='login-form')
@@ -10,12 +11,12 @@ block content
         input(type='text' name='name' required)
       label(class="signup-label").username-header Select User
         input(type="hidden" name="_csrf" value=token)
-      div(class="form-div")
-        select(name='userId'id="sources" placeholder="User" class=user-select-box required).option-bar
+      div(class="form-div" class="custom-select").option-bar
+        select(name='userId' placeholder="User" class='user-select-box' class='option-bar' required)
           each user in users
             option(value=user.id)=user.username
-      label(class="signup-label").description-header List Description
+      label(class="signup-label" class='description-header') List Description:
       div(class="form-div")
-        textarea(name='description' class='description-input')
-      button(type='submit' class='list-button' class='form__button--secondary' class='btn-3') Submit
-      a(href='/' class='form__button--primary' ) Cancel
+        textarea(name='description' class='description-input').new-description-box
+      button(type='submit' class='list-button' class='accept-btn' class='btn-3') Create  
+      a(href='/' class='cancel-btn' ) Cancel
